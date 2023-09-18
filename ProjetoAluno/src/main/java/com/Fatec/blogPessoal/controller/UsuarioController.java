@@ -28,7 +28,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Ususario> GetById(@PathVariable long id){
+	public ResponseEntity<Usuario> GetById(@PathVariable long id){
 		return repository.findById(id)
 						 .map(resp -> ResponseEntity.ok(resp))
 						 .orElse(ResponseEntity.notFound().build());
