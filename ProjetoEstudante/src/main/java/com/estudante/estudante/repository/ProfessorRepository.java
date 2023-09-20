@@ -1,4 +1,8 @@
 package com.estudante.estudante.repository;
 
-public interface ProfessorRepository {
+import com.estudante.estudante.model.Aluno;
+import com.estudante.estudante.model.Professor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProfessorRepository  extends JpaRepository<Professor, Long> {
 }

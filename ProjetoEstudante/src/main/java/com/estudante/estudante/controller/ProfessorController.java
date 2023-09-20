@@ -1,8 +1,8 @@
 package com.estudante.estudante.controller;
 
 
-import com.estudante.estudante.model.Aluno;
-import com.estudante.estudante.repository.AlunoRepository;
+import com.estudante.estudante.model.Professor;
+import com.estudante.estudante.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,35 +10,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/aluno")
+@RequestMapping("/professor")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class AlunoController {
+public class ProfessorController {
 
     @Autowired
-    private AlunoRepository repository;
+    private ProfessorRepository repository;
 
-    // Como o professor mostrou, utilizando métodos do JpaRepo
     @GetMapping
-    public ResponseEntity<List<Aluno>> GetAll(){
+    public ResponseEntity<List<Professor>> GetAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Aluno> GetById(@PathVariable long id){
+    public ResponseEntity<Professor> GetById(@PathVariable long id){
         return repository.findById(id)
                 .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     /**
+    private ProfessorRepository professorRepo;
+
     @Autowired
-    public AlunoController(AlunoRepository repo){
-        alunoRepo = repo;
+    public ProfessorController(ProfessorRepository repo) {
+        professorRepo = repo;
     }
 
     @GetMapping("/todos")
-    public List<Aluno> findAll(){
-        return alunoRepo.findAll();
+    public List<Professor> findAll() {
+        return professorRepo.findAll();
     }
-    **/
+     **/
 }

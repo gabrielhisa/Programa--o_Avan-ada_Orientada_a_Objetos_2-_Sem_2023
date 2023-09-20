@@ -2,18 +2,29 @@ package com.estudante.estudante.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name="Cursos")
+@Table(name="cursos")
 public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "curso_id")
     private long cursoId;
     private String nome;
     private int cargaHoraria;
-    private long professorId;
-    private long alunoId;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
+
+    // -------------------------------------------------------------------------
+    // Validar pq relação está errada
+    @OneToMany(mappedBy = "aluno_id")
+    private List<Aluno> alunos;
+    // -------------------------------------------------------------------------
+
 
     public long getCursoId() {
         return cursoId;
@@ -39,19 +50,30 @@ public class Curso {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public long getProfessorId() {
-        return professorId;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setProfessorId(long professorId) {
-        this.professorId = professorId;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
-    public long getAlunoId() {
-        return alunoId;
+    public List<Aluno> getAlunos() {
+        return alunos;
     }
 
-    public void setAlunoId(long alunoId) {
-        this.alunoId = alunoId;
+    public void setAlunos(List<Aluno> alunos) {
+        this.alunos = alunos;
+    }
+
+    @Override
+    public String toString() {
+        return "Curso{" +
+                "cursoId=" + cursoId +
+                ", nome='" + nome + '\'' +
+                ", cargaHoraria=" + cargaHoraria +
+                ", professor=" + professor +
+                ", alunos=" + alunos +
+                '}';
     }
 }

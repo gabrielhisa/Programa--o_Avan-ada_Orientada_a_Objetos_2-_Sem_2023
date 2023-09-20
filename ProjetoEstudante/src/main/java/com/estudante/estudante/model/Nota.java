@@ -4,16 +4,26 @@ package com.estudante.estudante.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Notas")
+@Table(name="notas")
 public class Nota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "nota_id")
     private long notaId;
     private double nota;
-    private int alunoId;
-    private int cursoId;
-    private int professorId;
+
+    @ManyToOne
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Professor professor;
 
     public long getNotaId() {
         return notaId;
@@ -31,27 +41,38 @@ public class Nota {
         this.nota = nota;
     }
 
-    public int getAlunoId() {
-        return alunoId;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setAlunoId(int alunoId) {
-        this.alunoId = alunoId;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
-    public int getCursoId() {
-        return cursoId;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setCursoId(int cursoId) {
-        this.cursoId = cursoId;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
-    public int getProfessorId() {
-        return professorId;
+    public Professor getProfessor() {
+        return professor;
     }
 
-    public void setProfessorId(int professorId) {
-        this.professorId = professorId;
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    @Override
+    public String toString() {
+        return "Nota{" +
+                "notaId=" + notaId +
+                ", nota=" + nota +
+                ", aluno=" + aluno +
+                ", curso=" + curso +
+                ", professor=" + professor +
+                '}';
     }
 }

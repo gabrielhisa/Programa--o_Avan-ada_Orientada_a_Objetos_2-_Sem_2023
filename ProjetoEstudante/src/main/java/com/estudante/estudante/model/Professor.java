@@ -3,13 +3,15 @@ package com.estudante.estudante.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name="Professores")
+@Table(name="professores")
 public class Professor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "professor_id")
     private long professorId;
     private String nome;
     private String curso;
@@ -18,7 +20,12 @@ public class Professor {
     private int ra;
     private String email;
     private String fone;
-    private long cursoId;
+
+    // -------------------------------------------------------------------------
+    // Validar pq relação está errada
+    @OneToMany(mappedBy = "curso_id")
+    private List<Curso> cursos;
+    // -------------------------------------------------------------------------
 
     public long getProfessorId() {
         return professorId;
@@ -84,11 +91,26 @@ public class Professor {
         this.fone = fone;
     }
 
-    public long getCursoId() {
-        return cursoId;
+    public List<Curso> getCursos() {
+        return cursos;
     }
 
-    public void setCursoId(long cursoId) {
-        this.cursoId = cursoId;
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" +
+                "professorId=" + professorId +
+                ", nome='" + nome + '\'' +
+                ", curso='" + curso + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", ra=" + ra +
+                ", email='" + email + '\'' +
+                ", fone='" + fone + '\'' +
+                ", cursos=" + cursos +
+                '}';
     }
 }

@@ -5,13 +5,14 @@ import java.util.Date;
 
 // Anotações do SpringBoot, estabelecendo conexão com o DB
 @Entity
-@Table(name="Alunos")
+@Table(name="alunos")
 public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "aluno_id")
     private long id;
-    @Column(name="nome")
+    //@Column(name="nome")
     private String nome;
     private String cpf;
     private int ra;
@@ -19,9 +20,14 @@ public class Aluno {
     private String email;
     private String fone;
     private String endereco;
-    private long cursoId;
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
+
 
     // Getters e setters
+
     public long getId() {
         return id;
     }
@@ -46,11 +52,11 @@ public class Aluno {
         this.cpf = cpf;
     }
 
-    public Integer getRa() {
+    public int getRa() {
         return ra;
     }
 
-    public void setRa(Integer ra) {
+    public void setRa(int ra) {
         this.ra = ra;
     }
 
@@ -86,11 +92,11 @@ public class Aluno {
         this.endereco = endereco;
     }
 
-    public long getCursoId() {
-        return cursoId;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setCursoId(long cursoId) {
-        this.cursoId = cursoId;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 }

@@ -8,10 +8,29 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Service
-public class AlunoRepositoryImplementacao implements AlunoRepository{
+public class AlunoRepositoryImplementacao{
+
+    // Adicionar > implements AlunoRepository
+    // Adicionar @Service sobre a classe
+
+    /*
+    private final EntityManager entityManager;
+
+    @Autowired
+    public AlunoRepositoryImplementacao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    @Override
+    public List<Aluno> findAll() {
+        TypedQuery<Aluno> query = entityManager.createQuery("SELECT p FROM Aluno p", Aluno.class);
+        return query.getResultList();
+    }
+    */
 
 
+
+    /**
     // Criando o EntityManager, para gerenciar as queries
     private EntityManager entityManager;
 
@@ -34,4 +53,5 @@ public class AlunoRepositoryImplementacao implements AlunoRepository{
         // Retornando a query em lista
         return query.getResultList();
     }
+    **/
 }
