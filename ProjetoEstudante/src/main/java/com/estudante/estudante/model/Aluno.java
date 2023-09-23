@@ -1,5 +1,7 @@
 package com.estudante.estudante.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +14,8 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aluno_id")
     private long id;
+
+
     //@Column(name="nome")
     private String nome;
     private String cpf;
@@ -23,6 +27,7 @@ public class Aluno {
 
     @ManyToOne
     @JoinColumn(name = "curso_id")
+    @JsonIgnore
     private Curso curso;
 
 

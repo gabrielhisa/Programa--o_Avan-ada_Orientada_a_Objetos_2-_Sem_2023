@@ -17,11 +17,26 @@ public class AlunoController {
     @Autowired
     private AlunoRepository repository;
 
+    /*
+    @Autowired
+    public AlunoController(AlunoRepository esseAluno){
+        repository = esseAluno;
+    }
+     */
+
     // Como o professor mostrou, utilizando métodos do JpaRepo
-    @GetMapping
-    public ResponseEntity<List<Aluno>> GetAll(){
+    @GetMapping("/todos")
+    public ResponseEntity<List<Aluno>> findAll(){
         return ResponseEntity.ok(repository.findAll());
     }
+
+    /*
+    // Testando método findAll
+    @GetMapping("/todos")
+    public List<Aluno> findAll(){
+        return repository.findAll();
+    }
+    */
 
     @GetMapping("/{id}")
     public ResponseEntity<Aluno> GetById(@PathVariable long id){
@@ -30,15 +45,4 @@ public class AlunoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-    @Autowired
-    public AlunoController(AlunoRepository repo){
-        alunoRepo = repo;
-    }
-
-    @GetMapping("/todos")
-    public List<Aluno> findAll(){
-        return alunoRepo.findAll();
-    }
-    **/
 }

@@ -12,6 +12,7 @@ public class Curso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "curso_id")
     private long cursoId;
+
     private String nome;
     private int cargaHoraria;
 
@@ -19,12 +20,8 @@ public class Curso {
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
-    // -------------------------------------------------------------------------
-    // Validar pq relação está errada
-    @OneToMany(mappedBy = "aluno_id")
+    @OneToMany(mappedBy = "curso")
     private List<Aluno> alunos;
-    // -------------------------------------------------------------------------
-
 
     public long getCursoId() {
         return cursoId;

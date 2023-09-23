@@ -17,7 +17,7 @@ public class ProfessorController {
     @Autowired
     private ProfessorRepository repository;
 
-    @GetMapping
+    @GetMapping("/todos")
     public ResponseEntity<List<Professor>> GetAll(){
         return ResponseEntity.ok(repository.findAll());
     }

@@ -17,7 +17,7 @@ public class NotaController {
     @Autowired
     private NotaRepository repository;
 
-    @GetMapping
+    @GetMapping("/todos")
     public ResponseEntity<List<Nota>> GetAll(){
         return ResponseEntity.ok(repository.findAll());
     }

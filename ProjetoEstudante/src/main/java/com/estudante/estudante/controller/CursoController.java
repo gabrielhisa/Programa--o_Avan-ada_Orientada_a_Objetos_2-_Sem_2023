@@ -19,7 +19,7 @@ public class CursoController {
     @Autowired
     private CursoRepository repository;
 
-    @GetMapping
+    @GetMapping("/todos")
     public ResponseEntity<List<Curso>> GetAll(){
         return ResponseEntity.ok(repository.findAll());
     }

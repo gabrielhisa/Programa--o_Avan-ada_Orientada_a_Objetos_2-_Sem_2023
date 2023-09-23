@@ -10,8 +10,8 @@ public class Nota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "nota_id")
-    private long notaId;
-    private double nota;
+    private Long notaId;
+    private Double nota;
 
     @ManyToOne
     @JoinColumn(name = "aluno_id")

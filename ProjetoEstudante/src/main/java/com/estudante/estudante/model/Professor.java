@@ -13,6 +13,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "professor_id")
     private long professorId;
+
     private String nome;
     private String curso;
     private String cpf;
@@ -21,11 +22,9 @@ public class Professor {
     private String email;
     private String fone;
 
-    // -------------------------------------------------------------------------
-    // Validar pq relação está errada
-    @OneToMany(mappedBy = "curso_id")
-    private List<Curso> cursos;
-    // -------------------------------------------------------------------------
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso esteCurso;
 
     public long getProfessorId() {
         return professorId;
@@ -91,26 +90,11 @@ public class Professor {
         this.fone = fone;
     }
 
-    public List<Curso> getCursos() {
-        return cursos;
+    public Curso getEsteCurso() {
+        return esteCurso;
     }
 
-    public void setCursos(List<Curso> cursos) {
-        this.cursos = cursos;
-    }
-
-    @Override
-    public String toString() {
-        return "Professor{" +
-                "professorId=" + professorId +
-                ", nome='" + nome + '\'' +
-                ", curso='" + curso + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", ra=" + ra +
-                ", email='" + email + '\'' +
-                ", fone='" + fone + '\'' +
-                ", cursos=" + cursos +
-                '}';
+    public void setEsteCurso(Curso esteCurso) {
+        this.esteCurso = esteCurso;
     }
 }
