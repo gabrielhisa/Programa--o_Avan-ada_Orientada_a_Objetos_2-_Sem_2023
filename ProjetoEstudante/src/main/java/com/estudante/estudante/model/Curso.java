@@ -1,6 +1,8 @@
 package com.estudante.estudante.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,9 +20,11 @@ public class Curso {
 
     @ManyToOne
     @JoinColumn(name = "professor_id")
+    @JsonIgnore
     private Professor professor;
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     private List<Aluno> alunos;
 
     public long getCursoId() {

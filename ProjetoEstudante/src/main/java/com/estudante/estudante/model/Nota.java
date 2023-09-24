@@ -15,6 +15,7 @@ public class Nota {
 
     @ManyToOne
     @JoinColumn(name = "aluno_id")
+    //@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     private Aluno aluno;
 
     @ManyToOne
