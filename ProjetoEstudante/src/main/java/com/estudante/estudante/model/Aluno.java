@@ -1,6 +1,8 @@
 package com.estudante.estudante.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,7 +18,7 @@ public class Aluno {
     private long id;
 
 
-    //@Column(name="nome")
+    @Column(name="nome")
     private String nome;
     private String cpf;
     private int ra;
@@ -25,8 +27,9 @@ public class Aluno {
     private String fone;
     private String endereco;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "curso_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Curso curso;
 
