@@ -19,7 +19,6 @@ public class Nota {
     private Double nota;
 
     //@JsonBackReference
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "aluno_id")
     //@JsonIgnore
@@ -57,7 +56,7 @@ public class Nota {
         this.aluno = aluno;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Curso getCurso() {
         return curso;
     }

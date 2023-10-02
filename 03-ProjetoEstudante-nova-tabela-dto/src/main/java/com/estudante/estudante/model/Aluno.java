@@ -22,7 +22,7 @@ public class Aluno {
     @Column(name="nome")
     private String nome;
 
-    @JsonManagedReference
+    //@JsonManagedReference
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     //@JsonIgnore
     private List<Nota> notas;

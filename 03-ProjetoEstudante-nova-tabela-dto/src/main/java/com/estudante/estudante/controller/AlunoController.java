@@ -4,6 +4,7 @@ package com.estudante.estudante.controller;
 import com.estudante.estudante.DTO.AlunoDTO;
 import com.estudante.estudante.model.Aluno;
 import com.estudante.estudante.repository.AlunoRepository;
+import com.estudante.estudante.service.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,51 @@ public class AlunoController {
     @Autowired
     private AlunoRepository repository;
 
+    //----------------------------------------------------------------------------------------------------
+    // Teste DTO
+    @GetMapping("/todos")
+    public ResponseEntity<List<AlunoDTO>> findAll(){
+        List<Aluno> alunos = repository.findAll();
+        List<AlunoDTO> alunoDTOs = alunos.stream()
+                .map(AlunoService::mapToDTO)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(alunoDTOs);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AlunoDTO> GetById(@PathVariable long id){
+        Optional<Aluno> aluno = repository.findById(id);
+        if (aluno.isPresent()) {
+            AlunoDTO alunoDTO = AlunoService.mapToDTO(aluno.get());
+            return ResponseEntity.ok(alunoDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/alunos")
+    public ResponseEntity<AlunoDTO> post(@RequestBody Aluno aluno){
+        Aluno savedAluno = repository.save(aluno);
+        AlunoDTO alunoDTO = AlunoService.mapToDTO(savedAluno);
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoDTO);
+    }
+
+    @PutMapping("/alunos/{id}")
+    public ResponseEntity<AlunoDTO> put(@PathVariable long id, @RequestBody Aluno aluno){
+
+        ????????????????????????
+
+        /*
+        Aluno savedAluno = repository.
+        AlunoDTO alunoDTO = AlunoService.mapToDTO(savedAluno);
+        return ResponseEntity.status(HttpStatus.OK).body(alunoDTO);
+
+         */
+
+    }
+
+    //----------------------------------------------------------------------------------------------------
+    /*
 
     // Como o professor mostrou, utilizando métodos do JpaRepo
     @GetMapping("/todos")
@@ -40,17 +86,6 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(aluno));
     }
 
-    /*
-    // Método POST
-    @PostMapping("/alunos")
-    public Aluno adicionarAluno(@RequestBody Aluno aluno){
-        //aluno.setId(0);
-        // Forçando salvar um item novo, ao invés de update
-        Aluno alunoDb = repository.save(aluno);
-        return alunoDb;
-    }
-
-     */
 
     // Método PUT
     @PutMapping("/alunos")
@@ -70,5 +105,7 @@ public class AlunoController {
         repository.deleteById(id);
         return "Deletado aluno de id: " + id;
     }
+
+     */
 
 }
