@@ -33,6 +33,7 @@ public class AlunoController {
         return ResponseEntity.ok(alunoDTOs);
     }
 
+    // Funcionando ok
     @GetMapping("/{id}")
     public ResponseEntity<AlunoDTO> GetById(@PathVariable long id){
         Optional<Aluno> aluno = repository.findById(id);
@@ -44,6 +45,7 @@ public class AlunoController {
         }
     }
 
+    // Posting salvando e fazendo a mesma função do put
     @PostMapping("/alunos")
     public ResponseEntity<AlunoDTO> post(@RequestBody Aluno aluno){
         Aluno savedAluno = repository.save(aluno);
@@ -53,17 +55,20 @@ public class AlunoController {
 
     @PutMapping("/alunos/{id}")
     public ResponseEntity<AlunoDTO> put(@PathVariable long id, @RequestBody Aluno aluno){
+        Optional<Aluno> alunoTemp = repository.findById(id);
+        if (alunoTemp.isPresent()){
+            Aluno alunoAtual = alunoTemp.get();
 
-        ????????????????????????
+            Aluno savedAluno = repository.save(alunoAtual);
+            AlunoDTO alunoDTO = AlunoService.mapToDTO(savedAluno);
+            return ResponseEntity.status(HttpStatus.CREATED).body(alunoDTO);
 
-        /*
-        Aluno savedAluno = repository.
-        AlunoDTO alunoDTO = AlunoService.mapToDTO(savedAluno);
-        return ResponseEntity.status(HttpStatus.OK).body(alunoDTO);
-
-         */
-
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
+
 
     //----------------------------------------------------------------------------------------------------
     /*
