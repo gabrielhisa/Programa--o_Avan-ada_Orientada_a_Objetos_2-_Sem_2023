@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 
-    public List<Aluno> findAllByTituloContainingIgnoreCase (String titulo);
+    //public List<Aluno> findAllByTituloContainingIgnoreCase (String titulo);
 
 }

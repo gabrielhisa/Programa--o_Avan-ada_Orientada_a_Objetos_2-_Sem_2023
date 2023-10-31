@@ -34,7 +34,7 @@ public class AlunoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Método POST
+    // Método POST funciona ok
     // Método do professor
     @PostMapping("/alunos")
     public ResponseEntity<Aluno> post (@RequestBody Aluno aluno){
@@ -44,7 +44,7 @@ public class AlunoController {
 
     }
 
-    /*
+    /**
     // Original
     @PostMapping("/alunos")
     public Aluno adicionarAluno(@RequestBody Aluno aluno){
@@ -53,15 +53,17 @@ public class AlunoController {
         Aluno alunoDb = repository.save(aluno);
         return alunoDb;
     }
+    **/
 
-     */
 
-    // Método PUT
+
+    // Método PUT N FUNCIONA como fazer sacoisa funcionar?
 
     @PutMapping("/alunos")
     public ResponseEntity<Aluno> put(@RequestBody Aluno aluno){
         return ResponseEntity.status(HttpStatus.OK).body(repository.save(aluno));
     }
+
 
     /*
     public Aluno autalizarAluno(@RequestBody Aluno aluno){
@@ -71,10 +73,15 @@ public class AlunoController {
 
      */
 
-    // Método DELETE
+    // Método DELETE funciona, soh preciso melhorar as mensagens confirmando se foi deletado ou n
     @DeleteMapping("/alunos/{id}")
     public void delete(@PathVariable long id){
         repository.deleteById(id);
+
+        //throw new RuntimeException("Id de aluno não encontrado: " + id);
+
+
+
     }
 
 
