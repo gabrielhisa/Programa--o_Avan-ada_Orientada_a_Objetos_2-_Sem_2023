@@ -1,7 +1,6 @@
 package com.estudante.estudante.controller;
 
 
-import com.estudante.estudante.DTO.AlunoDTO;
 import com.estudante.estudante.model.Aluno;
 import com.estudante.estudante.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/aluno")
@@ -21,13 +19,13 @@ public class AlunoController {
     @Autowired
     private AlunoRepository repository;
 
-
-    // Como o professor mostrou, utilizando métodos do JpaRepo
+    // Funcionando 100%
     @GetMapping("/todos")
     public ResponseEntity<List<Aluno>> findAll(){
         return ResponseEntity.ok(repository.findAll());
     }
 
+    // Funcionando 100%
     @GetMapping("/{id}")
     public ResponseEntity<Aluno> GetById(@PathVariable long id){
         return repository.findById(id)
@@ -35,36 +33,25 @@ public class AlunoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Funcionando 100%
     @PostMapping("/alunos")
-    public ResponseEntity<Aluno> post(@RequestBody Aluno aluno){
-        return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(aluno));
+    void post(@RequestBody Aluno aluno){
+        ResponseEntity.status(HttpStatus.CREATED).body(repository.save(aluno));
     }
 
-    /*
-    // Método POST
-    @PostMapping("/alunos")
-    public Aluno adicionarAluno(@RequestBody Aluno aluno){
-        //aluno.setId(0);
-        // Forçando salvar um item novo, ao invés de update
-        Aluno alunoDb = repository.save(aluno);
-        return alunoDb;
-    }
-
-     */
-
-    // Método PUT
+    // Funcionando 100%, ID precisa ser declarado no JSON para atualização
     @PutMapping("/alunos")
-    public Aluno autalizarAluno(@RequestBody Aluno aluno){
+    public Aluno put(@RequestBody Aluno aluno){
         Aluno alunoDb = repository.save(aluno);
         return alunoDb;
     }
 
-    // Método DELETE
+    // Funcionando 100%
     @DeleteMapping("/alunos/{id}")
     public String deletarAluno(@PathVariable long id){
         Optional<Aluno> aluno = repository.findById(id);
         // Jogando exceção se null
-        if (aluno == null){
+        if (!(aluno.isPresent())){
             throw new RuntimeException("Id de aluno não encontrado: " + id);
         }
         repository.deleteById(id);

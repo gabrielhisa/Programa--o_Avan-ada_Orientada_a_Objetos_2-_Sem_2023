@@ -19,11 +19,8 @@ public class Professor {
 
     private String nome;
 
-
     @OneToMany(mappedBy = "professor")
     private List<Curso> cursos;
-
-
 
     public long getProfessorId() {
         return professorId;

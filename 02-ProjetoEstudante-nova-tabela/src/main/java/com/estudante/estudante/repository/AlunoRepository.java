@@ -1,6 +1,5 @@
 package com.estudante.estudante.repository;
 
-import com.estudante.estudante.DTO.AlunoDTO;
 import com.estudante.estudante.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -22,14 +22,12 @@ public class Aluno {
     @Column(name="nome")
     private String nome;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "aluno-nota")
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
-    //@JsonIgnore
     private List<Nota> notas;
 
-
     // Getters e setters
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<Nota> getNotas() {
         return notas;
     }

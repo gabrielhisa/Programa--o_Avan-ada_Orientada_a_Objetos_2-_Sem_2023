@@ -18,19 +18,15 @@ public class Nota {
     @Column(name = "valor")
     private Double nota;
 
-    //@JsonBackReference
-    @JsonBackReference
+    @JsonBackReference(value = "aluno-nota")
     @ManyToOne
     @JoinColumn(name = "aluno_id")
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     private Aluno aluno;
 
-    //@JsonBackReference
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
-
 
     public Long getNotaId() {
         return notaId;
@@ -48,7 +44,7 @@ public class Nota {
         this.nota = nota;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Aluno getAluno() {
         return aluno;
     }
@@ -57,7 +53,7 @@ public class Nota {
         this.aluno = aluno;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public Curso getCurso() {
         return curso;
     }

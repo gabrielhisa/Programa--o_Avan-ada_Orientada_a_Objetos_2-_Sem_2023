@@ -1,0 +1,34 @@
+GET
+http://localhost:8080/aluno/todos
+
+GET ID
+http://localhost:8080/aluno/4
+
+POST
+http://localhost:8080/aluno/alunos
+{
+    "alunoId": 102,
+    "nome": "David testing",
+    "notas": [
+        {
+            "notaId": 4,
+            "nota": 6.4
+        }
+    ]
+}
+
+PUT
+http://localhost:8080/aluno/alunos/8
+{
+    "alunoId": 8,
+    "nome": "REBECCA",
+    "notas": [
+        {
+            "notaId": 4,
+            "nota": 6.4
+        }
+    ]
+}
+
+DELETE
+http://localhost:8080/aluno/alunos/1

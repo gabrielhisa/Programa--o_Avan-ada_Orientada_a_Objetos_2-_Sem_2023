@@ -20,7 +20,6 @@ public class Curso {
     @Column(name = "nome")
     private String nome;
 
-
     @ManyToOne
     @JoinColumn(name = "professor_id")
     //@JsonIgnore
