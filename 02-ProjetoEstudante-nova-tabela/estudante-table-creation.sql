@@ -1,4 +1,4 @@
-DROP DATABASE Estudante;
+-- DROP DATABASE Estudante;
 CREATE DATABASE IF NOT EXISTS Estudante;
 USE Estudante;
 
@@ -17,7 +17,7 @@ CREATE TABLE Cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     professor_id INT,
-    FOREIGN KEY (professor_id) REFERENCES Professores(id)
+    FOREIGN KEY (professor_id) REFERENCES Professores(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Notas (
@@ -25,8 +25,8 @@ CREATE TABLE Notas (
     valor FLOAT NOT NULL,
     aluno_id INT,
     curso_id INT,
-    FOREIGN KEY (aluno_id) REFERENCES Alunos(id),
-    FOREIGN KEY (curso_id) REFERENCES Cursos(id)
+    FOREIGN KEY (aluno_id) REFERENCES Alunos(id) ON DELETE CASCADE,
+    FOREIGN KEY (curso_id) REFERENCES Cursos(id) ON DELETE CASCADE
 );
 
 -- Inserts
